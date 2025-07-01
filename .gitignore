@@ -1,1 +1,11 @@
+# Ignorar arquivos de configuração com segredos
+gemini.properties
+
+# Arquivos de configuração específicos de IDEs
+.idea/
+.vscode/
+
+# Arquivos gerados pelo Maven/Java
+target/
+*.log
 
