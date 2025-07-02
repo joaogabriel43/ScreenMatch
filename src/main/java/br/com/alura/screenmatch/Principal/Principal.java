@@ -1,13 +1,13 @@
 package br.com.alura.screenmatch.Principal;
 
 import br.com.alura.screenmatch.model.*;
+import br.com.alura.screenmatch.repository.SerieRepository;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -20,6 +20,9 @@ public class Principal {
     @Value("${omdb.api.key}")
     private String apiKey;
     private List<DadosSerie> dadosSeries = new ArrayList<>();
+
+    @Autowired
+    private SerieRepository repositorio;
 
     public void exibeMenu() {
         var opcao = -1;
@@ -60,7 +63,8 @@ public class Principal {
         var nomeSerie = sc.nextLine();
         var json = consumoApi.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + "&apikey=" + apiKey);
         DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
-        dadosSeries.add(dados);
+        //dadosSeries.add(dados);
+        repositorio.save(new Serie(dados));
         System.out.println(dados);
     }
 
