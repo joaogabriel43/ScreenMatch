@@ -13,7 +13,7 @@ public enum Categoria {
     DOCUMENTARIO ("Documentary"),
     MUSICAL ("Musical"),
     ROMANCE ("Romance"),
-    MISTERYIO ("Mystery"),
+    MISTERIO ("Mystery"),
     CRIME ("Crime"),;
 
     private String categoriaOmdb;

@@ -1,5 +1,7 @@
 # Ignorar arquivos de configuração com segredos
 gemini.properties
+application.properties
+config.properties
 
 # Arquivos de configuração específicos de IDEs
 .idea/
@@ -8,4 +10,3 @@ gemini.properties
 # Arquivos gerados pelo Maven/Java
 target/
 *.log
-
