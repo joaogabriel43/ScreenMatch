@@ -63,9 +63,9 @@ public class Principal {
         var nomeSerie = sc.nextLine();
         var json = consumoApi.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + "&apikey=" + apiKey);
         DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
-        //dadosSeries.add(dados);
-        repositorio.save(new Serie(dados));
-        System.out.println(dados);
+        Serie serie = new Serie(dados);
+        repositorio.save(serie);
+        System.out.println(serie);
     }
 
     private void buscarEpisodioPorSerie() {
