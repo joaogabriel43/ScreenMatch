@@ -26,7 +26,7 @@ public class Serie {
     private String poster;
     private String sinopse;
 
-    @Transient
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Episodio> episodios =  new ArrayList<>();
 
     public Serie() {}
@@ -42,7 +42,7 @@ public class Serie {
             this.avaliacao = 0.0;
         }
         if (dadosSerie.genero() != null) {
-            this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
+            this.genero = Categoria.fromPortugues(dadosSerie.genero().split(",")[0].trim());
         } else {
             this.genero = null;
         }
@@ -68,6 +68,7 @@ public class Serie {
     }
 
     public void setEpisodios(List<Episodio> episodios) {
+        episodios.forEach(e -> e.setSerie(this));
         this.episodios = episodios;
     }
 
@@ -129,12 +130,13 @@ public class Serie {
 
     @Override
     public String toString() {
-        return  "genero=" + genero +
-                ",titulo='" + titulo + '\'' +
-                ", totalTemporadas=" + totalTemporadas +
-                ", avaliacao=" + avaliacao +
-                ", atores='" + atores + '\'' +
-                ", poster='" + poster + '\'' +
-                ", sinopse='" + sinopse + '\'';
+        return  "genero =" + genero +
+                ",titulo ='" + titulo + '\'' +
+                ", totalTemporadas =" + totalTemporadas +
+                ", avaliacao =" + avaliacao +
+                ", atores ='" + atores + '\'' +
+                ", poster ='" + poster + '\'' +
+                ", sinopse ='" + sinopse + '\''+
+                ", episodios ='" + episodios + '\'';
     }
 }
