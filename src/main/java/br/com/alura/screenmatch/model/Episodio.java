@@ -106,4 +106,12 @@ public class Episodio {
                 ", avaliacao=" + avaliacao +
                 ", dataLancamento=" + dataLancamento;
     }
+
+    public Object getNumeroTemporada() {
+        return this.temporada;
+    }
+
+    public Object getNumeroEpisodio() {
+        return this.numeroDoEpisodio;
+    }
 }
