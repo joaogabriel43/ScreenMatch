@@ -95,4 +95,11 @@ public class SerieService {
         Categoria categoria = Categoria.fromPortugues(nomeGenero);
         return converteDados(repositorio.findByGenero(categoria));
     }
+
+    public List<EpisodioDTO> obterTop5Episodios(Long id) {
+        return repositorio.topEpisodiosPorSerie(id).stream()
+                .map(e -> new EpisodioDTO(e.getTemporada(), (Integer) e.getNumeroEpisodio(), e.getTitulo()))
+                .collect(Collectors.toList());
+    }
+
 }
